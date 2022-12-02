@@ -1,0 +1,17 @@
+.venv/
+__pycache__
+
+*.pyc
+.env
+
+.vscode
+nsj_rest_lib
+tests
+api
+Lib
+Other Dockerfiles
+include
+Scripts
+pyvenv.cfg
+venv 
+cache
