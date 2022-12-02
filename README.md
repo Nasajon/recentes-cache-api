@@ -43,7 +43,7 @@ https://base_url/recents
  ```
  * Exemplo:
   ```
-  [POST] localhost:5000/recents?scope=scope&tenant=tenant&email=email&entity=entity&primary_key=pk
+  [POST] localhost:5000/recents?scope=95cd450c-30c5-4172-af2b-cdece39073bf&tenant=47&email=teste@nasajon.com.br&entity=Teste&primary_key=pk
   [BODY] { 	"pk" : 11, "nome" : "TESTE"}
   [RETORNO] '' 201
   ```
@@ -71,7 +71,7 @@ https://base_url/recents
   
  * Exemplo:
   ```
-  [GET] localhost:5000/recents?scope=scope&tenant=tenant&email=email&entity=entity&primary_key=pk
+  [GET] localhost:5000/recents?scope=95cd450c-30c5-4172-af2b-cdece39073bf&tenant=47&email=teste@nasajon.com.br&entity=Teste&primary_key=pk
   [RETORNO] [{"pk": 11,"nome": "TESTE"	}],  200
   ```
 
