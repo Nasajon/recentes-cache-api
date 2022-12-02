@@ -12,6 +12,40 @@ A autenticação da api se faz por meio da apikey então em cada requisição se
 
 A api no momento possui um endpoint com dois verbos
 
+
+ 
+
+[POST]
+https://base_url/recents
+
+ * Utilizado para guardar um objeto em uma chave
+ * Possui um corpo obrigatório
+ * Possui argumentos obrigatórios
+ ```
+    scope: Id do escopo do registro (id da empresa, estabelecimento, grupo empresarial, etc )
+    tenant: tenant do registro que será guardado no cache
+    email: email do usuario que está guardando no cache a entidade
+    entity: Nome da entidade a ser guardada no cache
+    primary_key: Nome do campo utiulizado como chave primaria da entidade
+ ```
+
+  ```
+ {
+    campos da entidade que deseja guardar 
+ }
+ ```
+    A unica regra é que a entidade precisa ter obrigatoriamente o campo passado no argumento priimary_key pois ele que definirá a a igualdade do objeto na lista
+
+ * O retorno é um 201 created com um corpo vazio
+ '', 201
+
+ * Exemplo:
+  ```
+  [POST] localhost:5000/recents?scope=scope&tenant=tenant&email=email&entity=entity&primary_key=pk
+  [BODY] { 	"pk" : 11, "nome" : "TESTE"}
+  [RETORNO] '' 201
+  ```
+
 [GET]
 https://base_url/recents
 
@@ -32,25 +66,12 @@ https://base_url/recents
     }
  ],
  200
- 
-
-[POST]
-https://base_url/recents
-
- * Utilizado para guardar um objeto em uma chave
- * Possui argumentos obrigatórios
- ```
-    scope: Id do escopo do registro (id da empresa, estabelecimento, grupo empresarial, etc )
-    tenant: tenant do registro que será guardado no cache
-    email: email do usuario que está guardando no cache a entidade
-    entity: Nome da entidade a ser guardada no cache
-    primary_key: Nome do campo utiulizado como chave primaria da entidade
- ```
-
- * O retorno é um 201 created com um corpo vazio
- '', 201
-
-
+  
+ * Exemplo:
+  ```
+  [GET] localhost:5000/recents?scope=scope&tenant=tenant&email=email&entity=entity&primary_key=pk
+  [RETORNO] [{"pk": 11,"nome": "TESTE"	}],  200
+  ```
 
  # ENVS
  * PYTHONPATH: caminho da rais de sua máquina até a pasta do projeto
