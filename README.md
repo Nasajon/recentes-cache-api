@@ -34,7 +34,7 @@ https://base_url/recents
     campos da entidade que deseja guardar 
  }
  ```
- 
+
   A única regra é que a entidade precisa ter obrigatoriamente o campo passado no argumento priimary_key pois ele que definirá a a igualdade do objeto na lista
 
  * O retorno é um 201 created com um corpo vazio
@@ -42,6 +42,7 @@ https://base_url/recents
     '', 201
  ```
  * Exemplo:
+  ```
   [POST] localhost:5000/recents?scope=scope&tenant=tenant&email=email&entity=entity&primary_key=pk
   [BODY] { 	"pk" : 11, "nome" : "TESTE"}
   [RETORNO] '' 201
