@@ -33,6 +33,7 @@ https://base_url/recents
  {
     campos da entidade que deseja guardar 
  }
+ ```
  
   A única regra é que a entidade precisa ter obrigatoriamente o campo passado no argumento priimary_key pois ele que definirá a a igualdade do objeto na lista
 
