@@ -2,11 +2,11 @@ from email import message
 from functools import cache
 from flask import request
 from exceptions.parameter_not_found_exception import ParameterNotFoundException
-from settings import CONTENT_TYPE_JSON_HEADER
+from settings import CONTENT_TYPE_JSON_HEADER, APIKEY_VALIDATE_URL
 from src.wsgi import application
 from src.injector_factory import InjectorFactory
 from nsj_gcf_utils.json_util import json_loads, json_dumps
-
+from src.api_key_authentication import require_apikey
 BASE_URL = f'/recents'
 
 
@@ -36,6 +36,7 @@ def _get_key_from_values(email, tenant, scope, entity):
     return f"{email}_{tenant}_{scope}_{entity}"
     
 @application.route(BASE_URL, methods=['GET'])
+@require_apikey(APIKEY_VALIDATE_URL)
 def get_recents():
     try:
         key = _get_key_from_values(**_get_all_parameters())
@@ -51,6 +52,7 @@ def get_recents():
     
     
 @application.route(BASE_URL, methods=['POST'])
+@require_apikey(APIKEY_VALIDATE_URL)
 def post_recent():
     try:
         parameters = _get_all_parameters()
