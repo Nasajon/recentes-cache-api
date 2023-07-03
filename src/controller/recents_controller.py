@@ -20,20 +20,23 @@ def _get_parameter(parameter_name : str, nullable: bool = False):
     return parameter
 
 def _get_all_parameters():
-    scope = _get_parameter('scope')
+    grupo_empresarial = _get_parameter('grupo_empresarial', True)
+    empresa = _get_parameter('empresa', True)
+    estabelecimento = _get_parameter('estabelecimento', True)
     tenant = _get_parameter('tenant')
     email = _get_parameter('email')
     entity = _get_parameter('entity')
-    primary_key = _get_parameter('primary_key')
     return {
-        'scope' : scope, 
+        'grupo_empresarial' : grupo_empresarial, 
+        'empresa' : empresa, 
+        'estabelecimento' : estabelecimento,
         'tenant': tenant, 
         'email' : email, 
         'entity': entity, 
     }
     
-def _get_key_from_values(email, tenant, scope, entity):
-    return f"{email}_{tenant}_{scope}_{entity}"
+def _get_key_from_values(email, tenant, empresa, estabelecimento, grupo_empresarial, entity):
+    return f"{email}_{tenant}_{empresa}_{grupo_empresarial}_{estabelecimento}_{entity}"
     
 @application.route(BASE_URL, methods=['GET'])
 @require_apikey(APIKEY_VALIDATE_URL)
@@ -57,7 +60,7 @@ def post_recent():
     try:
         parameters = _get_all_parameters()
         key = _get_key_from_values(**parameters)
-        primary_key = _get_parameter('primary_key')
+        primary_key = _get_parameter('primary_key', )
         cache_service = InjectorFactory.get_redis_service()
         
          

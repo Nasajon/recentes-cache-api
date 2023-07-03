@@ -15,7 +15,7 @@ class RedisService:
         result_list = []
         expiration_list = []
         values_list = []
-        
+        result_expiration_list =[]
         
         if (data is not None) and data:
             expiration_list = data['expiration']

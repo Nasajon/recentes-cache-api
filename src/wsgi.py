@@ -6,6 +6,6 @@ from src.settings import DEBUG, SERVER_PORT, application
 import src.controller.recents_controller
 
 if __name__ == '__main__':
-    # application.run(port=SERVER_PORT, host="0.0.0.0", debug=DEBUG)
-    application.run(port=SERVER_PORT)
+    application.run(port=SERVER_PORT, host="0.0.0.0", debug=DEBUG)
+    # application.run(port=SERVER_PORT)
 

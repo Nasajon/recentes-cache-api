@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+    app:
+        image: caching:latest
+        restart: always
+        ports:
+            - "5001:5001"
+        volumes:
+            - $PWD:/var/www/html        
+            - $PWD/wsgi_dev.ini:/etc/wsgi/wsgi.ini
+        env_file:
+            - .env
+        command: sh -c "python3 /var/www/html/src/wsgi.py"
+
+    redis_cache:
+        image: redis 
+        restart : always
+        ports:
+           - "6379:6379"
+        command: "redis-server --appendonly yes"
+        volumes:
+           - $PWD/cache:/data          
